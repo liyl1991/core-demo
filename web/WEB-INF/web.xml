@@ -13,11 +13,10 @@
 		<param-value>MySer.root</param-value>
 	</context-param>
 
-	<!--Spring ApplicationContext配置文件的路径。可使用通配符，多个路径用逗号分隔。
-		此参数用于后面的“Spring-Context loader”-->
+	<!--Spring ApplicationContext配置文件的路径。可使用通配符，多个路径-->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath*:cfg/applicationContext.xml</param-value>
+		<param-value>classpath*:cfg/spring.xml</param-value>
 	</context-param>
 
 	<!--由Sprng载入的Log4j配置文件位置-->
@@ -29,22 +28,16 @@
 	<servlet>
 		<servlet-name>springmvc</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+	      <param-name>contextConfigLocation</param-name>
+	      <param-value>classpath:/cfg/spring-servlet.xml</param-value>
+	    </init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>springmvc</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-	
-	<!-- 登陆过滤器 -->
-	<filter>
-		<filter-name>loginFilter</filter-name>
-		<filter-class>cn.haohao.cis.filter.LoginFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>loginFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping> 
 	
 	<!-- 著名 Character Encoding filter -->
 	<filter>
@@ -64,18 +57,39 @@
 	<listener>
 		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
 	</listener>
+	<!-- Druid 连接池-->
+	<filter>
+	      <filter-name>DruidWebStatFilter</filter-name>
+	      <filter-class>com.alibaba.druid.support.http.WebStatFilter</filter-class>
+	      <init-param>
+	       <param-name>exclusions</param-name>
+	       <param-value>*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*</param-value>
+	      </init-param>
+	</filter>
+	<filter-mapping>
+	     <filter-name>DruidWebStatFilter</filter-name>
+	     <url-pattern>/*</url-pattern>
+	</filter-mapping> 
+	<servlet>
+	    <servlet-name>DruidStatView</servlet-name>
+	    <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>   
+	</servlet>    
+	<servlet-mapping>
+	    <servlet-name>DruidStatView</servlet-name>
+	    <url-pattern>/druid/*</url-pattern>
+	</servlet-mapping>
 	<!--Spring Context loader-->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-	<error-page>
+	<!-- <error-page>
 		<error-code>500</error-code>
 		<location>/common/error-500.jsp</location>
 	</error-page>
 	<error-page>
 		<error-code>404</error-code>
 		<location>/common/error-404.jsp</location>
-	</error-page>
+	</error-page> -->
 	<session-config>
 		<session-timeout>30</session-timeout>
 	</session-config>

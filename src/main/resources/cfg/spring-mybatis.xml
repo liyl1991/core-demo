@@ -18,20 +18,31 @@
 >   
 	<!-- Date Source -->
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
-		<property name="driverClass" value="${jdbc.driverClassName}" />
-		<property name="jdbcUrl" value="${jdbc.url}" />
-		<property name="user" value="${jdbc.username}" />
+		<!-- <property name="driverClass" value="${jdbc.driverClassName}" /> -->
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
 		<property name="password" value="${jdbc.password}" />
-		<property name="minPoolSize" value="${jdbc.c3p0.min_size}" />
-		<property name="maxPoolSize" value="${jdbc.c3p0.max_size}" />
-		<property name="maxIdleTime" value="${jdbc.c3p0.max_idle_time}" />
-		<property name="acquireIncrement" value="${jdbc.c3p0.acquire_increment}" />
-		<property name="maxStatements" value="${jdbc.c3p0.max_statements}" />
-		<property name="idleConnectionTestPeriod" value="${jdbc.c3p0.idle_connection_test_period}" />
-		<property name="checkoutTimeout" value="${jdbc.c3p0.checkout_timeout}" />
-		<property name="testConnectionOnCheckin" value="${jdbc.c3p0.test_connection_on_checkin}" />
-		<property name="automaticTestTable" value="${jdbc.c3p0.automatic_test_table}" />
-		<property name="preferredTestQuery" value="${jdbc.c3p0.preferred_test_query}" />
+		<!-- 配置初始化大小、最小、最大 -->
+		<property name="initialSize" value="${jdbc.druid.initialSize}" />
+		<property name="maxActive" value="${jdbc.druid.maxActive}" />
+		<property name="maxIdle" value="${jdbc.druid.maxIdle}" />
+		<property name="minIdle" value="${jdbc.druid.minIdle}" />
+		<!-- 配置获取连接等待超时的时间 -->
+		<property name="maxWait" value="${jdbc.druid.maxWait}" />
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+		<property name="timeBetweenEvictionRunsMillis" value="${jdbc.druid.timeBetweenEvictionRunsMillis}" />
+		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+		<property name="minEvictableIdleTimeMillis" value="${jdbc.druid.minEvictableIdleTimeMillis}" />
+		
+		<property name="testOnBorrow" value="${jdbc.druid.testOnBorrow}" />
+		<property name="testOnReturn" value="${jdbc.druid.testOnReturn}" />
+		<property name="testWhileIdle" value="${jdbc.druid.testWhileIdle}" />
+		<property name="validationQuery" value="${jdbc.druid.validationQuery}" />
+		<!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->  
+	    <property name="poolPreparedStatements" value="${jdbc.druid.poolPreparedStatements}" />  
+	    <property name="maxPoolPreparedStatementPerConnectionSize" value="${jdbc.druid.maxPoolPreparedStatementPerConnectionSize}" /> 
+	    
+		<property name="filters" value="${jdbc.druid.filters}" />
 	</bean>
 
 	<!-- TransactionManager -->
