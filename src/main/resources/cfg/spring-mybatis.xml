@@ -16,7 +16,7 @@
                            http://www.springframework.org/schema/mvc
                            http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd"
 >   
-	<!-- Date Source -->
+	<!-- Date Source Druid -->
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
 		<!-- <property name="driverClass" value="${jdbc.driverClassName}" /> -->
 		<property name="url" value="${jdbc.url}" />
@@ -25,7 +25,7 @@
 		<!-- 配置初始化大小、最小、最大 -->
 		<property name="initialSize" value="${jdbc.druid.initialSize}" />
 		<property name="maxActive" value="${jdbc.druid.maxActive}" />
-		<property name="maxIdle" value="${jdbc.druid.maxIdle}" />
+		<!-- <property name="maxIdle" value="${jdbc.druid.maxIdle}" /> -->
 		<property name="minIdle" value="${jdbc.druid.minIdle}" />
 		<!-- 配置获取连接等待超时的时间 -->
 		<property name="maxWait" value="${jdbc.druid.maxWait}" />
@@ -53,7 +53,7 @@
 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="mapperLocations" value="classpath:cn/haohao/**/model/ibatis/*.xml"></property>
+		<property name="mapperLocations" value="classpath:cn/liyl/**/model/ibatis/*.xml"></property>
 		<property name="configLocation" value="classpath:cfg/sqlmap-config.xml"></property>
 	</bean>
 	<!-- <bean id="applicationContextHelper" class="cn.utils.ApplicationContextHelper" /> -->
@@ -78,7 +78,7 @@
     </tx:advice>  
      <!-- 定义事务切面 -->
     <aop:config>
-        <aop:pointcut id="serviceMethod" expression="execution(* cn.haohao.cis..impl.*.*(..))"/> 
+        <aop:pointcut id="serviceMethod" expression="execution(* cn.liyl.cis..impl.*.*(..))"/> 
         <aop:advisor pointcut-ref="serviceMethod" advice-ref="txAdvice" />
     </aop:config> 
 	<bean id="nameParJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">

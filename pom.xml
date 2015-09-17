@@ -8,7 +8,7 @@
 	<name>core-demo</name>
 	<description>core-demo</description>
 	<build>
-		<outputDirectory>web/WEB-INF/classes</outputDirectory>
+		<outputDirectory>src/main/webapp/WEB-INF/classes</outputDirectory>
 		<defaultGoal>compile</defaultGoal>
 		<plugins>
 			<plugin>
@@ -39,6 +39,9 @@
 			</resource>
 			<resource>
 				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/**</include>
+				</includes>
 			</resource>
 		</resources>
 	</build>

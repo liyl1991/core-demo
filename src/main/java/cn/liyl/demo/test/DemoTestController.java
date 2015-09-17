@@ -7,9 +7,12 @@ import org.springframework.web.portlet.ModelAndView;
 @Controller
 @RequestMapping("/demo")
 public class DemoTestController {
-
+	
+	@RequestMapping("/test")
 	public ModelAndView doMain(){
 		ModelAndView mv = new ModelAndView();
+		mv.setView("index");
+		mv.addObject("msg", "Hello World!");
 		return mv;
 	}
 	
