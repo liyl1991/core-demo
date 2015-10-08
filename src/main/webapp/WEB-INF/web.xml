@@ -24,13 +24,14 @@
 		<param-name>log4jConfigLocation</param-name>
 		<param-value>classpath:log4j.properties</param-value>
 	</context-param>
-
+	
+	<!--SpringMVC 配置-->
 	<servlet>
 		<servlet-name>springmvc</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 	      <param-name>contextConfigLocation</param-name>
-	      <param-value>classpath:cfg/spring-servlet.xml</param-value>
+	      <param-value>classpath:cfg/spring-mvc.xml</param-value>
 	    </init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
@@ -95,6 +96,6 @@
 	</session-config>
 	<!-- 首页 -->
 	<welcome-file-list>
-		<welcome-file>/jsp/index.jsp</welcome-file>
+		<welcome-file>/WEB-INF/jsp/index.jsp</welcome-file>
 	</welcome-file-list>
 </web-app>

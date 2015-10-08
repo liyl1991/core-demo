@@ -19,14 +19,23 @@
 >   
     
     <mvc:default-servlet-handler/>
-	<mvc:annotation-driven/>
-	<context:component-scan base-package="cn.liyl.*"></context:component-scan>
+	<!-- 添加注解驱动 -->
+	<mvc:annotation-driven />
+	<!-- 默认扫描的包路径 -->
+	<context:component-scan base-package="cn.liyl.**.web"></context:component-scan>
+	<!-- 像下面这样设置，如果请求为/，则不通过controller，而直接解析为/index.jsp -->
+	<mvc:view-controller path="/" view-name="index" />
     <!-- 视图解析器 -->
-    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+    <!-- <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
           p:viewClass="org.springframework.web.servlet.view.JstlView"
-          p:prefix="/jsp/"
+          p:prefix="/WEB-INF/"
           p:suffix=".jsp">
-    </bean>
+    </bean> -->
+    <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"></property>
+		<property name="prefix" value="/WEB-INF/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  
         <!-- 指定所上传文件的总大小不能超过200KB。注意maxUploadSize属性的限制不是针对单个文件，而是所有文件的容量之和 -->  
         <property name="maxUploadSize" value="3145728000"/>  

@@ -13,5 +13,5 @@
  	
 	<import resource="classpath*:cfg/spring-mybatis.xml" />
 	<!--读取配置文件.-->
-	<context:property-placeholder location="classpath*:cfg/jdbc.properties" />
+	<context:property-placeholder location="classpath:cfg/jdbc.properties" />
 </beans>

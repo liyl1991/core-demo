@@ -41,7 +41,6 @@
 		<!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->  
 	    <property name="poolPreparedStatements" value="${jdbc.druid.poolPreparedStatements}" />  
 	    <property name="maxPoolPreparedStatementPerConnectionSize" value="${jdbc.druid.maxPoolPreparedStatementPerConnectionSize}" /> 
-	    
 		<property name="filters" value="${jdbc.druid.filters}" />
 	</bean>
 
